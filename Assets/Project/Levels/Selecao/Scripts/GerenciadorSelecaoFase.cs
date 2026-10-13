@@ -18,13 +18,6 @@ public class GerenciadorSelecaoFase : MonoBehaviour
         sceneList.Add(1, "Fase01");
         sceneList.Add(2, "Fase02");
         sceneList.Add(3, "Fase03");
-
-        //PlacarFase01();
-
-        //GameObject estrela = Instantiate(image01, canvasParent.transform);
-        //RectTransform rectTransform = estrela.GetComponent<RectTransform>();
-
-        //rectTransform.localPosition = new Vector2(rectTransform.localPosition.x, rectTransform.localPosition.y + 10f);
     }
 
     public void LoadFase(int fase)
@@ -38,17 +31,5 @@ public class GerenciadorSelecaoFase : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene(sceneName);
-    }
-
-    //private void PlacarFase01()
-    //{
-    //    int placarFase01 = PlayerPrefs.GetInt("Fase01Conquistas", 0);
-
-    //    textPlacarFase01.text = placarFase01.ToString();
-    //}
-
-    private void FasesHabilitadas()
-    {
-
     }
 }

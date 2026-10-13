@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Project/Levels/Fase03/Fase03.unity
     guid: a3fe263460c09f04795ac375f535fe65
   - enabled: 1
-    path: Assets/Project/Levels/Final/Final.unity
+    path: Assets/Project/Core/Scenes/Final.unity
     guid: 14e9edc0509613e4a8beb2b005be20e6
   m_configObjects: {}

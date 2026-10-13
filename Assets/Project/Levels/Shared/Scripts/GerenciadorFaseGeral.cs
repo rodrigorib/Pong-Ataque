@@ -16,6 +16,8 @@ public class GerenciadorFaseGeral : MonoBehaviour
     [SerializeField]
     private GameObject panelObjetivo;
     [SerializeField]
+    private GameObject panelPausa;
+    [SerializeField]
     private TextMeshProUGUI textTotalPontos;
     [SerializeField]
     private TextMeshProUGUI textPlacar;
@@ -42,7 +44,9 @@ public class GerenciadorFaseGeral : MonoBehaviour
     public GameObject lancamentoCentral;
     public List<GameObject> pontosLancamento;
 
-    void Awake()
+    private bool pausado = false;
+
+    private void Awake()
     {
         Time.timeScale = 0f;
         if (instancia == null)
@@ -66,6 +70,14 @@ public class GerenciadorFaseGeral : MonoBehaviour
         vidaDireita.fimVidas += GameOver;
 
         panelObjetivo.SetActive(true);
+    }
+
+    private void Update()
+    {
+        bool pausar = Input.GetKeyDown(KeyCode.Escape);
+
+        if (pausar && !pausado && !panelObjetivo.activeSelf)
+            PausarJogo();
     }
 
     public void Pontuar()
@@ -218,5 +230,26 @@ public class GerenciadorFaseGeral : MonoBehaviour
 
         if (FaseAtual >= ultimaFaseLiberada)
             PlayerPrefs.SetInt("UltimaFaseLiberada", FaseAtual + 1);
+    }
+
+    private void PausarJogo()
+    {
+        pausado = true;
+        Time.timeScale = 0f;
+        panelPausa.SetActive(true);
+    }
+
+    public void VoltarPausaJogo()
+    {
+        StartCoroutine(VoltaPausa());
+    }
+
+    private IEnumerator VoltaPausa()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+
+        pausado = false;
+        Time.timeScale = 1f;
+        panelPausa.SetActive(false);
     }
 }
