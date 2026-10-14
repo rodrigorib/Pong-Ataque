@@ -70,13 +70,15 @@ public class GerenciadorFaseGeral : MonoBehaviour
         vidaDireita.fimVidas += GameOver;
 
         panelObjetivo.SetActive(true);
+
+        //PlayerPrefs.DeleteAll();
     }
 
     private void Update()
     {
         bool pausar = Input.GetKeyDown(KeyCode.Escape);
 
-        if (pausar && !pausado && !panelObjetivo.activeSelf)
+        if (pausar && !(pausado || panelObjetivo.activeSelf || panelGameOver.activeSelf || panelVitoria.activeSelf))
             PausarJogo();
     }
 
@@ -127,7 +129,7 @@ public class GerenciadorFaseGeral : MonoBehaviour
         int proximaFase = FaseAtual + 1;
         string sceneName = $"Fase{proximaFase.ToString("D2")}";
 
-        if (ultimaFaseLiberada > FaseAtual + 1)
+        if (ultimaFaseLiberada >= FaseAtual + 1)
             StartCoroutine(DelayLoadScene(sceneName));
     }
 
